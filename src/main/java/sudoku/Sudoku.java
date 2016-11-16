@@ -30,24 +30,20 @@ public class Sudoku {
 
             while ((lineText = lineReader.readLine()) != null) {
                 if(count == 0) {
-//                  getting the size of the sudoku board
                     this.size = Integer.parseInt(lineText);
                     this.board = new String[this.size][this.size];
 
                 } else if (count == 1) {
-//                    valid characters
                     this.validChars = lineText.split("\\s+");
-//
+
                 } else {
                     String[] finArray = lineText.split("\\s+");
-//                  filling the board with the correct values
                     if(i < finArray.length) {
                         for(j = 0; j < finArray.length; j++) {
-//                        check to make sure only numbers and '-' chacters
                             if(Arrays.asList(this.validChars).contains(finArray[j]) || finArray[j].matches("-")) {
                                 this.board[i][j] = finArray[j];
                             } else {
-                                this.isInvalid = true;
+                                System.out.print("Invalid board detected");
                             }
                         }
                         i++;
@@ -64,17 +60,13 @@ public class Sudoku {
     }
 
     public void printBoard() {
-        if(!this.isInvalid) {
-            for(int i = 0; i < this.size; i++) {
-                String line = "";
-                for (int j = 0; j < this.size; j++) {
-                    line += " " + board[i][j];
-                }
-                System.out.print(line + "\n");
+        for(int i = 0; i < this.size; i++) {
+            String line = "";
+            for (int j = 0; j < this.size; j++) {
+                line += " " + board[i][j];
             }
-
-        } else {
-            System.out.print("Invalid board detected");
+            System.out.print(line + "\n");
         }
+
     }
 }
