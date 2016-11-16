@@ -1,8 +1,10 @@
 package sudoku;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Arrays;
 
 /**
  * Created by seth on 11/14/16.
@@ -11,6 +13,7 @@ public class Sudoku {
 
     private int size;
     private Boolean isInvalid = false;
+    public String[] validChars;
     public String[][] board;
 
 
@@ -21,7 +24,8 @@ public class Sudoku {
         int count = 0, i = 0, j = 0;
 
         try {
-            BufferedReader lineReader = new BufferedReader(new FileReader(fin));
+            String finPath = new File(fin).getAbsolutePath();
+            BufferedReader lineReader = new BufferedReader(new FileReader(finPath));
             String lineText = null;
 
             while ((lineText = lineReader.readLine()) != null) {
@@ -30,13 +34,17 @@ public class Sudoku {
                     this.size = Integer.parseInt(lineText);
                     this.board = new String[this.size][this.size];
 
-                } else if(count > 1) {
+                } else if (count == 1) {
+//                    valid characters
+                    this.validChars = lineText.split("\\s+");
+//
+                } else {
                     String[] finArray = lineText.split("\\s+");
 //                  filling the board with the correct values
                     if(i < finArray.length) {
                         for(j = 0; j < finArray.length; j++) {
 //                        check to make sure only numbers and '-' chacters
-                            if(finArray[j].matches("^[0-9]+$") || finArray[j].matches("-")) {
+                            if(Arrays.asList(this.validChars).contains(finArray[j]) || finArray[j].matches("-")) {
                                 this.board[i][j] = finArray[j];
                             } else {
                                 this.isInvalid = true;
@@ -44,8 +52,6 @@ public class Sudoku {
                         }
                         i++;
                     }
-                } else if(count > this.size) {
-                    this.isInvalid = true;
                 }
 
                 count++;

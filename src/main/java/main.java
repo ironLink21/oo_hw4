@@ -8,7 +8,7 @@ public class main {
 
     public static void main(String[] args) throws Exception {
         Sudoku sudoku = new Sudoku();
-        sudoku.SudokuParser("/Users/seth/Development/personal/Fall2016/oo/assign4/src/main/resources/SamplePuzzles/Input/Puzzle-4x4-0001.txt");
+        sudoku.SudokuParser("src/main/resources/SamplePuzzles/Input/Puzzle-4x4-0001.txt");
 
         sudoku.printBoard();
     }
