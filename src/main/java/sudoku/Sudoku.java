@@ -12,7 +12,6 @@ import java.util.Arrays;
 public class Sudoku {
 
     private int size;
-    private Boolean isInvalid = false;
     public String[] validChars;
     public String[][] board;
 
@@ -21,7 +20,7 @@ public class Sudoku {
     }
 
     public void SudokuParser(String fin) {
-        int count = 0, i = 0, j = 0;
+        int count = 0, i = 0;
 
         try {
             String finPath = new File(fin).getAbsolutePath();
@@ -36,20 +35,18 @@ public class Sudoku {
                 } else if (count == 1) {
                     this.validChars = lineText.split("\\s+");
 
-                } else {
+                } else if (count >= 2 && i <= this.size-1) {
                     String[] finArray = lineText.split("\\s+");
-                    if(i < finArray.length) {
-                        for(j = 0; j < finArray.length; j++) {
-                            if(Arrays.asList(this.validChars).contains(finArray[j]) || finArray[j].matches("-")) {
-                                this.board[i][j] = finArray[j];
-                            } else {
-                                System.out.print("Invalid board detected");
-                            }
+                    for(int j = 0; j < finArray.length; j++) {
+                        if(Arrays.asList(this.validChars).contains(finArray[j]) || finArray[j].matches("-")) {
+                            this.board[i][j] = finArray[j];
+                        } else {
+                            System.out.print("Invalid board detected, size:" + this.size + " character:" + finArray[j]);
+                            System.exit(1);
                         }
-                        i++;
                     }
+                    i++;
                 }
-
                 count++;
             }
 
@@ -57,6 +54,11 @@ public class Sudoku {
         } catch (IOException ex) {
             System.err.println(ex);
         }
+    }
+
+    public void runSolver() {
+        Solver method1 = new SolverMethod1(this.board, this.validChars);
+        method1.templatMethod();
     }
 
     public void printBoard() {
@@ -67,6 +69,5 @@ public class Sudoku {
             }
             System.out.print(line + "\n");
         }
-
     }
 }
