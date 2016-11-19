@@ -6,12 +6,11 @@ import java.util.*;
  * Created by seth on 11/16/16.
  */
 public class SolverMethod1 extends Solver {
-    private Queue<int[]> emptyCoordinates;
 
     public SolverMethod1(String[][] board, String[] validChars) {
         this.board = board;
         this.validChars = Arrays.toString(validChars).replace("[","").replace("]","").replace(" ", "");
-        emptyCoordinates = new LinkedList<int[]>();
+        this.emptyCoordinates = new LinkedList<int[]>();
     }
 
     public void findEmptyCell() {
@@ -20,20 +19,20 @@ public class SolverMethod1 extends Solver {
                 String[] cell = this.board[i][j].split("\\s+");
                 if(cell[0].matches("-")) {
                     int[] coords = {i,j};
-                    emptyCoordinates.add(coords);
+                    this.emptyCoordinates.add(coords);
                     this.board[i][j] = this.validChars;
 
                 } else if (cell.length > 1) {
                     int[] coords = {i,j};
-                    emptyCoordinates.add(coords);
+                    this.emptyCoordinates.add(coords);
                 }
             }
         }
     }
 
     public void checkRow() {
-        for(int i = 0; i < emptyCoordinates.size(); i++) {
-            int[] currCoord = emptyCoordinates.poll();
+        for(int i = 0; i < this.emptyCoordinates.size(); i++) {
+            int[] currCoord = this.emptyCoordinates.poll();
             int row = currCoord[0];
             int col = currCoord[1];
 
@@ -52,13 +51,13 @@ public class SolverMethod1 extends Solver {
                 }
             }
 
-            emptyCoordinates.add(currCoord);
+            this.emptyCoordinates.add(currCoord);
         }
     }
 
     public void checkCol() {
-        for(int j = 0; j <= emptyCoordinates.size()+1; j++) {
-            int[] currCoord = emptyCoordinates.poll();
+        for(int j = 0; j <= this.emptyCoordinates.size()+1; j++) {
+            int[] currCoord = this.emptyCoordinates.poll();
             int row = currCoord[0];
             int col = currCoord[1];
 
@@ -79,10 +78,10 @@ public class SolverMethod1 extends Solver {
 
             String[] cell = this.board[row][col].split(",");
             if(cell.length != 1) {
-                emptyCoordinates.add(currCoord);
+                this.emptyCoordinates.add(currCoord);
             } else if(cell[0].matches("")){
                 this.board[row][col] = "*";
-                emptyCoordinates.add(currCoord);
+                this.emptyCoordinates.add(currCoord);
             }
         }
     }
@@ -90,8 +89,8 @@ public class SolverMethod1 extends Solver {
     public void setPossibleValues() {
         this.isFinished = true;
 
-        for(int i = 0; i < emptyCoordinates.size(); i++) {
-            int[] currCoord = emptyCoordinates.poll();
+        for(int i = 0; i < this.emptyCoordinates.size(); i++) {
+            int[] currCoord = this.emptyCoordinates.poll();
             int row = currCoord[0];
             int col = currCoord[1];
 
@@ -103,19 +102,9 @@ public class SolverMethod1 extends Solver {
             }
 
             if(emptyCellVal.length > 1){
-                emptyCoordinates.add(currCoord);
+                this.emptyCoordinates.add(currCoord);
                 this.isFinished = false;
             }
-        }
-    }
-
-    public void printBoard() {
-        for(int i = 0; i < this.board.length; i++) {
-            String line = "";
-            for (int j = 0; j < this.board.length; j++) {
-                line += " " + board[i][j];
-            }
-            System.out.print(line + "\n");
         }
     }
 }

@@ -58,7 +58,14 @@ public class Sudoku {
 
     public void runSolver() {
         Solver method1 = new SolverMethod1(this.board, this.validChars);
-        method1.templatMethod();
+        boolean isSolved = method1.templatMethod();
+
+        if(!isSolved) {
+            Solver method2 = new SolverMethod2(this.board, this.validChars);
+            isSolved = method2.templatMethod();
+        }
+
+//        System.out.print("testing");
     }
 
     public void printBoard() {
