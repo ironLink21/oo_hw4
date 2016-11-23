@@ -11,7 +11,7 @@ import java.util.Arrays;
  */
 public class Sudoku {
 
-    private int size;
+    protected int size;
     public String[] validChars;
     public String[][] board;
 
@@ -21,13 +21,14 @@ public class Sudoku {
 
     public void SudokuParser(String fin) {
         int count = 0, i = 0;
+        boolean isInvalid = false;
 
         try {
             String finPath = new File(fin).getAbsolutePath();
             BufferedReader lineReader = new BufferedReader(new FileReader(finPath));
             String lineText = null;
 
-            while ((lineText = lineReader.readLine()) != null) {
+            while ((lineText = lineReader.readLine()) != null && !isInvalid) {
                 if(count == 0) {
                     this.size = Integer.parseInt(lineText);
                     this.board = new String[this.size][this.size];
@@ -42,7 +43,8 @@ public class Sudoku {
                             this.board[i][j] = finArray[j];
                         } else {
                             System.out.print("Invalid board detected, size:" + this.size + " character:" + finArray[j]);
-                            System.exit(1);
+                            isInvalid = true;
+                            break;
                         }
                     }
                     i++;
