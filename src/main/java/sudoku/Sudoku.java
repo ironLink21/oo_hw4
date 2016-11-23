@@ -1,9 +1,6 @@
 package sudoku;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.Arrays;
 
 /**
@@ -74,12 +71,21 @@ public class Sudoku {
     }
 
     public void printBoard() {
-        for(int i = 0; i < this.size; i++) {
-            String line = "";
-            for (int j = 0; j < this.size; j++) {
-                line += " " + board[i][j];
+        try {
+            PrintStream output = new PrintStream(new File("puzzle_"+ this.size +"x"+this.size+".txt"));
+
+            for(int i = 0; i < this.size; i++) {
+                String line = "";
+                for (int j = 0; j < this.size; j++) {
+                    line += " " + board[i][j];
+                }
+                System.out.print(line + "\n");
+                output.println(line);
             }
-            System.out.print(line + "\n");
+
+            output.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
     }
 }
