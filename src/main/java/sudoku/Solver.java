@@ -8,6 +8,7 @@ import java.util.Queue;
 abstract class Solver {
     protected String[][] board, tempBoard;
     protected String validChars;
+    protected int[] validCharsInt;
     protected boolean isFinished;
     protected static int sameBoardCounter;
     protected Queue<int[]> emptyCoordinates;
