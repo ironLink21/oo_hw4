@@ -1,4 +1,3 @@
-# oo_hw4
 # Creator
 Seth Bertlshofer
 11/22/16
