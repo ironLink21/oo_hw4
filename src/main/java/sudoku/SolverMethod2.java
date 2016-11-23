@@ -16,23 +16,51 @@ public class SolverMethod2 extends Solver{
         emptyCoordinates = new LinkedList<int[]>();
     }
 
-    public void findEmptyCell() {
+    public void operation1() {
         System.out.print("findEmptyCell2");
     }
 
-    public void checkRow() {
+    public void operation2() {
         System.out.print("checkRow2");
     }
 
-    public void checkCol() {
+    public void operation3() {
         System.out.print("checkCol2");
     }
 
-    public void setPossibleValues() {
-        System.out.print("setPossibleValues2");
+    public void operation4() {
+
+//        List<char> blockValues = new List<char>();
+//
+//        //loop through the different blocks
+//        for (int i = 0; i < puzzleSize; i++)
+//        {
+//            for (int row = (int)(i * Math.Sqrt(puzzleSize)); row < Math.Sqrt(puzzleSize); row++)
+//            {
+//                for (int col = (int)(i * Math.Sqrt(puzzleSize)); col < Math.Sqrt(puzzleSize); col++)
+//                {
+//                    //int rowBlock = emptyCells[cell][0];
+//                    //int colBlock = emptyCells[cell][1];
+//                    char value = puzzleBoard[row, col].actualValue;
+//                    if (value != '-')
+//                    {
+//                        blockValues.Add(value);
+//                    }
+//                }
+//            }
+//
+//            for (int row = (int)(i * Math.Sqrt(puzzleSize)); row < Math.Sqrt(puzzleSize); row++)
+//            {
+//                for (int col = (int)(i * Math.Sqrt(puzzleSize)); col < Math.Sqrt(puzzleSize); col++)
+//                {
+//                    if (puzzleBoard[row, col].actualValue == '-')
+//                    {
+//                        puzzleBoard[row, col].possibleValues.RemoveAll(ab => blockValues.Contains(ab));
+//                    }
+//
+//                }
+//            }
+//        }
     }
 
-    public void checkBoard() {
-        System.out.print("checkBoard2");
-    }
 }

@@ -2,6 +2,8 @@ package sudoku;
 
 import org.junit.Test;
 
+import java.util.Arrays;
+
 import static org.junit.Assert.*;
 
 /**
@@ -40,5 +42,7 @@ public class SudokuTest {
         assert board[2][0] == sudoku.board[2][0];
 
         assert board[3][0] == sudoku.board[3][0];
+
+        Arrays.asList(board).indexOf("1");
     }
 }

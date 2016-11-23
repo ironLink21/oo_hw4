@@ -13,7 +13,7 @@ public class SolverMethod1 extends Solver {
         this.emptyCoordinates = new LinkedList<int[]>();
     }
 
-    public void findEmptyCell() {
+    public void operation1() {
         for(int i = 0; i < this.board.length; i++) {
             for(int j = 0 ; j < this.board.length; j++) {
                 String[] cell = this.board[i][j].split("\\s+");
@@ -30,7 +30,7 @@ public class SolverMethod1 extends Solver {
         }
     }
 
-    public void checkRow() {
+    public void operation2() {
         for(int i = 0; i < this.emptyCoordinates.size(); i++) {
             int[] currCoord = this.emptyCoordinates.poll();
             int row = currCoord[0];
@@ -55,7 +55,7 @@ public class SolverMethod1 extends Solver {
         }
     }
 
-    public void checkCol() {
+    public void operation3() {
         for(int j = 0; j <= this.emptyCoordinates.size()+1; j++) {
             int[] currCoord = this.emptyCoordinates.poll();
             int row = currCoord[0];
@@ -86,7 +86,7 @@ public class SolverMethod1 extends Solver {
         }
     }
 
-    public void setPossibleValues() {
+    public void operation4() {
         this.isFinished = true;
 
         for(int i = 0; i < this.emptyCoordinates.size(); i++) {

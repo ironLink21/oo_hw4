@@ -12,17 +12,17 @@ abstract class Solver {
     protected static int sameBoardCounter;
     protected Queue<int[]> emptyCoordinates;
 
-    public abstract void findEmptyCell();
-    public abstract void checkRow();
-    public abstract void checkCol();
-    public abstract void setPossibleValues();
+    public abstract void operation1();
+    public abstract void operation2();
+    public abstract void operation3();
+    public abstract void operation4();
 
     public boolean templatMethod() {
         while(!isFinished) {
-            findEmptyCell();
-            checkRow();
-            checkCol();
-            setPossibleValues();
+            operation1();
+            operation2();
+            operation3();
+            operation4();
 //            checkBoard();
 //            printBoard();
             if(sameBoardCounter == 2){

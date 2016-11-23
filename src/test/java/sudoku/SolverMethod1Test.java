@@ -20,7 +20,7 @@ public class SolverMethod1Test {
 
         SolverMethod1 solver = new SolverMethod1(board, validChars);
 
-        solver.findEmptyCell();
+        solver.operation1();
         assertEquals(solver.emptyCoordinates.size(), 8);
 
         assertArrayEquals(board_expected, board);
@@ -28,7 +28,7 @@ public class SolverMethod1Test {
         String[][] board1 = {};
         solver = new SolverMethod1(board1, validChars);
 
-        solver.findEmptyCell();
+        solver.operation1();
         assertEquals(solver.emptyCoordinates.size(), 0);
     }
 
@@ -39,8 +39,8 @@ public class SolverMethod1Test {
 
         SolverMethod1 solver = new SolverMethod1(board, validChars);
 
-        solver.findEmptyCell();
-        solver.checkRow();
+        solver.operation1();
+        solver.operation2();
         int[] test = {0,2};
         int[] test2 = solver.emptyCoordinates.poll();
         assertArrayEquals(test2, test);
@@ -49,8 +49,8 @@ public class SolverMethod1Test {
         String[][] board_expected = {{"4","2","3","1"},{"1,3,4","1,3,4","1,3,4","2"},{"3","1,4","2","1,4"},{"1,2","4","1,2","3"}};
         solver = new SolverMethod1(board, validChars);
 
-        solver.findEmptyCell();
-        solver.checkRow();
+        solver.operation1();
+        solver.operation2();
 
         assertArrayEquals(board_expected, board);
     }
@@ -63,9 +63,9 @@ public class SolverMethod1Test {
 
         SolverMethod1 solver = new SolverMethod1(board, validChars);
 
-        solver.findEmptyCell();
-        solver.checkRow();
-        solver.checkCol();
+        solver.operation1();
+        solver.operation2();
+        solver.operation3();
         assertArrayEquals(board_expected, board);
         
         board = new String[][]{{"2", "-", "3", "1"}, {"1", "3", "-", "4"}, {"3", "1", "4", "-"}, {"-", "4", "1", "3"}};
@@ -73,9 +73,9 @@ public class SolverMethod1Test {
 
         solver = new SolverMethod1(board, validChars);
 
-        solver.findEmptyCell();
-        solver.checkRow();
-        solver.checkCol();
+        solver.operation1();
+        solver.operation2();
+        solver.operation3();
         assertArrayEquals(board_expected, board);
     }
 
@@ -99,10 +99,10 @@ public class SolverMethod1Test {
 
         SolverMethod1 solver = new SolverMethod1(board, validChars);
 
-        solver.findEmptyCell();
-        solver.checkRow();
-        solver.checkCol();
-        solver.setPossibleValues();
+        solver.operation1();
+        solver.operation2();
+        solver.operation3();
+        solver.operation4();
         assertFalse(solver.isFinished);
         assertEquals(solver.emptyCoordinates.size(), 4);
 //        assertEquals(Arrays.asList(solver.emptyCoordinates), Arrays.asList(emptyCoords));
@@ -111,10 +111,10 @@ public class SolverMethod1Test {
 
         solver = new SolverMethod1(board, validChars);
 
-        solver.findEmptyCell();
-        solver.checkRow();
-        solver.checkCol();
-        solver.setPossibleValues();
+        solver.operation1();
+        solver.operation2();
+        solver.operation3();
+        solver.operation4();
         assertTrue(solver.isFinished);
         assertEquals(solver.emptyCoordinates.size(), 1);
     }
